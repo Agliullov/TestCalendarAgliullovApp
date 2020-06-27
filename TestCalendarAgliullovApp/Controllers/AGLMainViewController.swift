@@ -207,7 +207,6 @@ class AGLMainViewController: UIViewController {
                 self.navigationController?.pushViewController(detailsTaskVC, animated: true)
             }
             else {
-                //let alertVC = UIAlertController(title: "Shouse the day", message: "Click on day for create task", preferredStyle: .alert)
                 let alertController = UIAlertController(title: "Выберите день", message: "Укажите день для создания задачи", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alertController.addAction(okAction)
@@ -255,23 +254,8 @@ extension AGLMainViewController: UITableViewDataSource, UITableViewDelegate {
         case .taskCell:
             let taskCell = cell as! AGLTaskTableViewCell
             taskCell.selectionStyle = .default
-            
             if let task = self.filteredTasks?[indexPath.row] {
-                taskCell.mainLabel.text = task.mainDescriptionString
-                taskCell.detailLabel.text = task.detailsDescriptionString
-                
-                var colorPriority: UIColor = UIColor()
-                if task.priorityStateString == PriorityState.low.rawValue {
-                    colorPriority = UIColor.green
-                } else if task.priorityStateString == PriorityState.medium.rawValue {
-                    colorPriority = UIColor.orange
-                } else if task.priorityStateString == PriorityState.high.rawValue {
-                    colorPriority = UIColor.red
-                }
-                taskCell.priorityView.backgroundColor = colorPriority
-                
-                let time = task.taskCreatedTime
-                taskCell.timeIntervalLabel.text = time.description
+                taskCell.setupWithTask(task: task)
             }
             cell = taskCell
         }

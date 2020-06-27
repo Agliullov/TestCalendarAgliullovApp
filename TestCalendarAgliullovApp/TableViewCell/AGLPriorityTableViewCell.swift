@@ -15,8 +15,6 @@ class AGLPriorityTableViewCell: AGLDefaultGridCell {
         let segment = UISegmentedControl(items: actions)
         segment.translatesAutoresizingMaskIntoConstraints = false
         segment.selectedSegmentIndex = 0
-        segment.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        segment.tintColor = UIColor.white
         return segment
     }()
     

@@ -8,8 +8,9 @@
 
 import RealmSwift
 
-//MARK: - JSON propertys
-internal class AGLTask: AgliullovObject {
+//MARK: - JSON properties
+internal class AGLTask: Object {
+    
     //id
     dynamic var id = RealmOptional<Int64>()
     
@@ -26,6 +27,10 @@ internal class AGLTask: AgliullovObject {
     //Время создания задачи
     @objc dynamic var dateCreated: Date?
     
+    //Изображение
+    @objc dynamic var imagePath: String?
+    
+    //Первичный ключ
     override class func primaryKey() -> String? {
         return "id"
     }
@@ -79,26 +84,8 @@ extension AGLTask {
             task.priorityState = json["priorityState"] as? String
             task.date = json["date"] as? Date
             task.dateCreated = json["dateCreated"] as? Date
+            task.imagePath = json["imagePath"] as? String
         }
         return task
     }
-}
-
-//MARK: - Сравнение объектов
-fileprivate func < <T : Comparable>(lhs: [T], rhs: [T]) -> Bool {
-    if lhs.count == 0, rhs.count > 0 { return true }
-    if rhs.count == 0 { return false }
-    
-    var i = 0
-    while lhs[i] == rhs[i], i < lhs.count-1, i < rhs.count-1 {
-        i += 1
-    }
-    
-    let lastLhsItem = lhs[i]
-    let lastRhsItem = rhs[i]
-    
-    if lastLhsItem == lastRhsItem {
-        return lhs.count < rhs.count
-    }
-    return lastLhsItem < lastRhsItem
 }

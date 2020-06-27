@@ -1,5 +1,5 @@
 //
-//  AGLDefaultButtonTableCell.swift
+//  AGLImageButtonTableViewCell.swift
 //  TestCalendarAgliullovApp
 //
 //  Created by Ильдар Аглиуллов on 21.06.2020.
@@ -8,10 +8,9 @@
 
 import UIKit
 
-class AGLDefaultButtonTableCell: AGLDefaultGridCell {
+class AGLImageButtonTableViewCell: AGLDefaultGridCell {
     
     var buttonActionBlock: (()->())?
-    
     var buttonActionContainer: (()->())?
     
     fileprivate let buttonAction: UIButton = {
@@ -54,10 +53,8 @@ class AGLDefaultButtonTableCell: AGLDefaultGridCell {
     }
     
     internal func setup() {
-        
         self.imageContainer.addSubview(taskImageView)
         self.imageContainer.addSubview(openDetailsImageButton)
-        
         
         self.buttonAction.addTarget(self, action: #selector(openImagePickerButtonDidTapped), for: .touchUpInside)
         self.openDetailsImageButton.addTarget(self, action: #selector(openImageContainerButtonDidTapped), for: .touchUpInside)
@@ -81,7 +78,7 @@ class AGLDefaultButtonTableCell: AGLDefaultGridCell {
             self.openDetailsImageButton.topAnchor.constraint(equalTo: self.imageContainer.layoutMarginsGuide.topAnchor),
             self.imageContainer.layoutMarginsGuide.rightAnchor.constraint(equalTo: self.openDetailsImageButton.rightAnchor),
             self.openDetailsImageButton.heightAnchor.constraint(equalTo: self.imageContainer.layoutMarginsGuide.heightAnchor),
-        
+            
             //selfImageContainer
             self.taskImageView.leftAnchor.constraint(equalTo: self.imageContainer.layoutMarginsGuide.leftAnchor),
             self.taskImageView.topAnchor.constraint(equalTo: self.imageContainer.layoutMarginsGuide.topAnchor),

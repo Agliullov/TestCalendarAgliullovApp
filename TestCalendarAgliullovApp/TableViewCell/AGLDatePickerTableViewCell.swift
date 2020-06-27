@@ -1,5 +1,5 @@
 //
-//  AGLDatePickerTableCell.swift
+//  AGLDatePickerTableViewCell.swift
 //  TestCalendarAgliullovApp
 //
 //  Created by Ильдар Аглиуллов on 21.06.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AGLDatePickerTableCell: AGLDefaultGridCell {
+class AGLDatePickerTableViewCell: AGLDefaultGridCell {
     
     internal let timeIntervalPicker: UIDatePicker = {
         let timePicker = UIDatePicker()

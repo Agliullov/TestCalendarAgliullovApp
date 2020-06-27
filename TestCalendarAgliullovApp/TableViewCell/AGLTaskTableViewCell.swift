@@ -50,7 +50,6 @@ class AGLTaskTableViewCell: UITableViewCell {
     internal let priorityView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.red
         return view
     }()
     
@@ -115,5 +114,38 @@ class AGLTaskTableViewCell: UITableViewCell {
         
         self.priorityView.clipsToBounds = true
         self.priorityView.layer.cornerRadius = PRIORITY_VIEW_HEIGHT / 2
+    }
+    
+    func UTCToLocal(date: String) -> String {
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        dateFormatter.timeZone = .current
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        let convertedDate = dateFormatter.date(from: date)
+        guard dateFormatter.date(from: date) != nil else { return "" }
+        
+        dateFormatter.dateFormat = "HH:mm"
+        let timeStamp = dateFormatter.string(from: convertedDate!)
+        return timeStamp
+    }
+    
+    func setupWithTask(task: AGLTask) {
+        
+        self.mainLabel.text = task.mainDescriptionString
+        self.detailLabel.text = task.detailsDescriptionString
+        
+        var colorPriority: UIColor = UIColor.gray
+        if task.priorityStateString.lowercased() == PriorityState.low.rawValue.lowercased() {
+            colorPriority = UIColor.green
+        } else if task.priorityStateString.lowercased() == PriorityState.medium.rawValue.lowercased() {
+            colorPriority = UIColor.orange
+        } else if task.priorityStateString.lowercased() == PriorityState.high.rawValue.lowercased() {
+            colorPriority = UIColor.red
+        }
+        self.priorityView.backgroundColor = colorPriority
+        
+        self.timeIntervalLabel.text = self.UTCToLocal(date: task.taskTime.description)
     }
 }

@@ -66,14 +66,13 @@ internal class AGLRealmManager: NSObject {
         
         let directory = self.realmDirectoryURL(dataBaseId: self.dataBaseId!)
         let realmURL = self.defaultRealmURL(dataBaseId: self.dataBaseId!)
+        _ = self.getConfig(realmURL: realmURL)
         
         for currentConfigUrl in self.findRealmFiles(inDirectory: directory) {
             do {
                 try FileManager.default.moveItem(at: currentConfigUrl, to: realmURL)
             } catch { }
         }
-        
-        let config = self.getConfig(realmURL: realmURL)
         
         self.isRealmConfigured = true
     }

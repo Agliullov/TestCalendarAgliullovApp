@@ -1,5 +1,5 @@
 //
-//  AGLDefaultGridViewBlock.swift
+//  AGLDescriptionGridViewCell.swift
 //  TestCalendarAgliullovApp
 //
 //  Created by Ильдар Аглиуллов on 21.06.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AGLDefaultGridViewBlock: AGLDefaultGridCell, UITextFieldDelegate  {
+class AGLDescriptionGridViewCell: AGLDefaultGridCell, UITextFieldDelegate  {
     
     internal let mainTextField: UITextField = {
         let textField = UITextField()

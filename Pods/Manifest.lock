@@ -1,5 +1,6 @@
 PODS:
   - FSCalendar (2.8.1)
+  - QBImagePickerController (3.4.0)
   - Realm (5.0.3):
     - Realm/Headers (= 5.0.3)
   - Realm/Headers (5.0.3)
@@ -8,19 +9,22 @@ PODS:
 
 DEPENDENCIES:
   - FSCalendar
+  - QBImagePickerController
   - RealmSwift
 
 SPEC REPOS:
   trunk:
     - FSCalendar
+    - QBImagePickerController
     - Realm
     - RealmSwift
 
 SPEC CHECKSUMS:
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
+  QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   Realm: bfca1699b61b0b17c3a69ae0e648314eae91fbdb
   RealmSwift: 493c9f089cd3893b3959007973c0e4f640906ba0
 
-PODFILE CHECKSUM: 1868dd4074751ddfd04aab34e0283cf88421aff6
+PODFILE CHECKSUM: f77bd80184ebf41ae1899ac0f0876e4cc8068632
 
 COCOAPODS: 1.9.3

@@ -8,18 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		B9184080249D55AB00073A82 /* AGLDetailsTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B918407F249D55AB00073A82 /* AGLDetailsTaskViewController.swift */; };
-		B947DBA724A4DD9100B40CF9 /* TestCalendarAgliullovAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B947DBA624A4DD9100B40CF9 /* TestCalendarAgliullovAppTests.swift */; };
-		B947DBAF24A4DE0A00B40CF9 /* AGLTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B947DBAE24A4DE0A00B40CF9 /* AGLTestCase.swift */; };
-		B947DBB124A4FCFC00B40CF9 /* AGLImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B947DBB024A4FCFC00B40CF9 /* AGLImageViewCell.swift */; };
+		B947DBB324A52ABD00B40CF9 /* AGLPresentImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B947DBB224A52ABD00B40CF9 /* AGLPresentImageViewController.swift */; };
 		B98D9B49249FDBD500FFDE5E /* AGLDefaultGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98D9B48249FDBD500FFDE5E /* AGLDefaultGridCell.swift */; };
 		B98D9B4C249FE45200FFDE5E /* AGLRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98D9B4B249FE45200FFDE5E /* AGLRealmManager.swift */; };
-		B98D9B4F249FEA0800FFDE5E /* AgliullovObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98D9B4E249FEA0800FFDE5E /* AgliullovObject.swift */; };
 		B98D9B51249FEB0F00FFDE5E /* AGLTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98D9B50249FEB0F00FFDE5E /* AGLTask.swift */; };
 		B9BB1D43249FC52E007A2C45 /* AGLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BB1D42249FC52E007A2C45 /* AGLHelpers.swift */; };
-		B9BCE4D6249F8B150046A045 /* AGLDefaultGridViewBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BCE4D5249F8B150046A045 /* AGLDefaultGridViewBlock.swift */; };
+		B9BCE4D6249F8B150046A045 /* AGLDescriptionGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BCE4D5249F8B150046A045 /* AGLDescriptionGridViewCell.swift */; };
 		B9BCE4D8249F8DC30046A045 /* AGLPriorityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BCE4D7249F8DC30046A045 /* AGLPriorityTableViewCell.swift */; };
-		B9BCE4DA249F90DE0046A045 /* AGLDatePickerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BCE4D9249F90DE0046A045 /* AGLDatePickerTableCell.swift */; };
-		B9BCE4DC249F91330046A045 /* AGLDefaultButtonTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BCE4DB249F91330046A045 /* AGLDefaultButtonTableCell.swift */; };
+		B9BCE4DA249F90DE0046A045 /* AGLDatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BCE4D9249F90DE0046A045 /* AGLDatePickerTableViewCell.swift */; };
+		B9BCE4DC249F91330046A045 /* AGLImageButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BCE4DB249F91330046A045 /* AGLImageButtonTableViewCell.swift */; };
 		B9E9A195249AAA8400B499B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E9A194249AAA8400B499B2 /* AppDelegate.swift */; };
 		B9E9A197249AAA8400B499B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E9A196249AAA8400B499B2 /* SceneDelegate.swift */; };
 		B9E9A199249AAA8400B499B2 /* AGLMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E9A198249AAA8400B499B2 /* AGLMainViewController.swift */; };
@@ -31,35 +28,20 @@
 		FCF18E31232F8E7CEB2D7675 /* Pods_TestCalendarAgliullovApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A1434DB41FA0090AE69A15 /* Pods_TestCalendarAgliullovApp.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		B947DBA924A4DD9100B40CF9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B9E9A189249AAA8400B499B2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B9E9A190249AAA8400B499B2;
-			remoteInfo = TestCalendarAgliullovApp;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		07A1434DB41FA0090AE69A15 /* Pods_TestCalendarAgliullovApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestCalendarAgliullovApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F05D184E6980EA9BB3D7C5A /* Pods-TestCalendarAgliullovApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestCalendarAgliullovApp.release.xcconfig"; path = "Target Support Files/Pods-TestCalendarAgliullovApp/Pods-TestCalendarAgliullovApp.release.xcconfig"; sourceTree = "<group>"; };
 		B918407F249D55AB00073A82 /* AGLDetailsTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGLDetailsTaskViewController.swift; sourceTree = "<group>"; };
-		B947DBA424A4DD9100B40CF9 /* TestCalendarAgliullovAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestCalendarAgliullovAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B947DBA624A4DD9100B40CF9 /* TestCalendarAgliullovAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCalendarAgliullovAppTests.swift; sourceTree = "<group>"; };
-		B947DBA824A4DD9100B40CF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B947DBAE24A4DE0A00B40CF9 /* AGLTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGLTestCase.swift; sourceTree = "<group>"; };
-		B947DBB024A4FCFC00B40CF9 /* AGLImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGLImageViewCell.swift; sourceTree = "<group>"; };
+		B947DBB224A52ABD00B40CF9 /* AGLPresentImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGLPresentImageViewController.swift; sourceTree = "<group>"; };
 		B985787824A3531700FC3C54 /* TestCalendarAgliullovApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestCalendarAgliullovApp.entitlements; sourceTree = "<group>"; };
 		B98D9B48249FDBD500FFDE5E /* AGLDefaultGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGLDefaultGridCell.swift; sourceTree = "<group>"; };
 		B98D9B4B249FE45200FFDE5E /* AGLRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGLRealmManager.swift; sourceTree = "<group>"; };
-		B98D9B4E249FEA0800FFDE5E /* AgliullovObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgliullovObject.swift; sourceTree = "<group>"; };
 		B98D9B50249FEB0F00FFDE5E /* AGLTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGLTask.swift; sourceTree = "<group>"; };
 		B9BB1D42249FC52E007A2C45 /* AGLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGLHelpers.swift; sourceTree = "<group>"; };
-		B9BCE4D5249F8B150046A045 /* AGLDefaultGridViewBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGLDefaultGridViewBlock.swift; sourceTree = "<group>"; };
+		B9BCE4D5249F8B150046A045 /* AGLDescriptionGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGLDescriptionGridViewCell.swift; sourceTree = "<group>"; };
 		B9BCE4D7249F8DC30046A045 /* AGLPriorityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGLPriorityTableViewCell.swift; sourceTree = "<group>"; };
-		B9BCE4D9249F90DE0046A045 /* AGLDatePickerTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGLDatePickerTableCell.swift; sourceTree = "<group>"; };
-		B9BCE4DB249F91330046A045 /* AGLDefaultButtonTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGLDefaultButtonTableCell.swift; sourceTree = "<group>"; };
+		B9BCE4D9249F90DE0046A045 /* AGLDatePickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGLDatePickerTableViewCell.swift; sourceTree = "<group>"; };
+		B9BCE4DB249F91330046A045 /* AGLImageButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGLImageButtonTableViewCell.swift; sourceTree = "<group>"; };
 		B9E9A191249AAA8400B499B2 /* TestCalendarAgliullovApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestCalendarAgliullovApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9E9A194249AAA8400B499B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9E9A196249AAA8400B499B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,13 +56,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B947DBA124A4DD9100B40CF9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B9E9A18E249AAA8400B499B2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -106,18 +81,9 @@
 			children = (
 				B9E9A198249AAA8400B499B2 /* AGLMainViewController.swift */,
 				B918407F249D55AB00073A82 /* AGLDetailsTaskViewController.swift */,
+				B947DBB224A52ABD00B40CF9 /* AGLPresentImageViewController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		B947DBA524A4DD9100B40CF9 /* TestCalendarAgliullovAppTests */ = {
-			isa = PBXGroup;
-			children = (
-				B947DBA624A4DD9100B40CF9 /* TestCalendarAgliullovAppTests.swift */,
-				B947DBA824A4DD9100B40CF9 /* Info.plist */,
-				B947DBAE24A4DE0A00B40CF9 /* AGLTestCase.swift */,
-			);
-			path = TestCalendarAgliullovAppTests;
 			sourceTree = "<group>";
 		};
 		B98D9B4A249FE44000FFDE5E /* Managers */ = {
@@ -131,7 +97,6 @@
 		B98D9B4D249FE9EB00FFDE5E /* RealmObjects */ = {
 			isa = PBXGroup;
 			children = (
-				B98D9B4E249FEA0800FFDE5E /* AgliullovObject.swift */,
 				B98D9B50249FEB0F00FFDE5E /* AGLTask.swift */,
 			);
 			path = RealmObjects;
@@ -143,11 +108,10 @@
 				B98D9B48249FDBD500FFDE5E /* AGLDefaultGridCell.swift */,
 				B9FC5AAB249AB432003A41B4 /* AGLCalendarTableViewCell.swift */,
 				B9FC5AAD249AB467003A41B4 /* AGLTaskTableViewCell.swift */,
-				B9BCE4D5249F8B150046A045 /* AGLDefaultGridViewBlock.swift */,
+				B9BCE4D5249F8B150046A045 /* AGLDescriptionGridViewCell.swift */,
 				B9BCE4D7249F8DC30046A045 /* AGLPriorityTableViewCell.swift */,
-				B9BCE4D9249F90DE0046A045 /* AGLDatePickerTableCell.swift */,
-				B9BCE4DB249F91330046A045 /* AGLDefaultButtonTableCell.swift */,
-				B947DBB024A4FCFC00B40CF9 /* AGLImageViewCell.swift */,
+				B9BCE4D9249F90DE0046A045 /* AGLDatePickerTableViewCell.swift */,
+				B9BCE4DB249F91330046A045 /* AGLImageButtonTableViewCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -156,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				B9E9A193249AAA8400B499B2 /* TestCalendarAgliullovApp */,
-				B947DBA524A4DD9100B40CF9 /* TestCalendarAgliullovAppTests */,
 				B9E9A192249AAA8400B499B2 /* Products */,
 				33168B734AE4A4664A346326 /* Pods */,
 				F6F85348C3707E48B214DB08 /* Frameworks */,
@@ -167,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				B9E9A191249AAA8400B499B2 /* TestCalendarAgliullovApp.app */,
-				B947DBA424A4DD9100B40CF9 /* TestCalendarAgliullovAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,24 +164,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B947DBA324A4DD9100B40CF9 /* TestCalendarAgliullovAppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B947DBAD24A4DD9100B40CF9 /* Build configuration list for PBXNativeTarget "TestCalendarAgliullovAppTests" */;
-			buildPhases = (
-				B947DBA024A4DD9100B40CF9 /* Sources */,
-				B947DBA124A4DD9100B40CF9 /* Frameworks */,
-				B947DBA224A4DD9100B40CF9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B947DBAA24A4DD9100B40CF9 /* PBXTargetDependency */,
-			);
-			name = TestCalendarAgliullovAppTests;
-			productName = TestCalendarAgliullovAppTests;
-			productReference = B947DBA424A4DD9100B40CF9 /* TestCalendarAgliullovAppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		B9E9A190249AAA8400B499B2 /* TestCalendarAgliullovApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9E9A1A5249AAA8600B499B2 /* Build configuration list for PBXNativeTarget "TestCalendarAgliullovApp" */;
@@ -249,10 +193,6 @@
 				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = "Ильдар Аглиуллов";
 				TargetAttributes = {
-					B947DBA324A4DD9100B40CF9 = {
-						CreatedOnToolsVersion = 11.5;
-						TestTargetID = B9E9A190249AAA8400B499B2;
-					};
 					B9E9A190249AAA8400B499B2 = {
 						CreatedOnToolsVersion = 11.5;
 					};
@@ -272,19 +212,11 @@
 			projectRoot = "";
 			targets = (
 				B9E9A190249AAA8400B499B2 /* TestCalendarAgliullovApp */,
-				B947DBA324A4DD9100B40CF9 /* TestCalendarAgliullovAppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B947DBA224A4DD9100B40CF9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B9E9A18F249AAA8400B499B2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -340,15 +272,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B947DBA024A4DD9100B40CF9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B947DBAF24A4DE0A00B40CF9 /* AGLTestCase.swift in Sources */,
-				B947DBA724A4DD9100B40CF9 /* TestCalendarAgliullovAppTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B9E9A18D249AAA8400B499B2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -356,7 +279,6 @@
 				B98D9B4C249FE45200FFDE5E /* AGLRealmManager.swift in Sources */,
 				B98D9B51249FEB0F00FFDE5E /* AGLTask.swift in Sources */,
 				B9E9A199249AAA8400B499B2 /* AGLMainViewController.swift in Sources */,
-				B947DBB124A4FCFC00B40CF9 /* AGLImageViewCell.swift in Sources */,
 				B98D9B49249FDBD500FFDE5E /* AGLDefaultGridCell.swift in Sources */,
 				B9BCE4D8249F8DC30046A045 /* AGLPriorityTableViewCell.swift in Sources */,
 				B9FC5AAC249AB432003A41B4 /* AGLCalendarTableViewCell.swift in Sources */,
@@ -364,23 +286,15 @@
 				B9BB1D43249FC52E007A2C45 /* AGLHelpers.swift in Sources */,
 				B9E9A195249AAA8400B499B2 /* AppDelegate.swift in Sources */,
 				B9184080249D55AB00073A82 /* AGLDetailsTaskViewController.swift in Sources */,
-				B9BCE4DC249F91330046A045 /* AGLDefaultButtonTableCell.swift in Sources */,
-				B9BCE4D6249F8B150046A045 /* AGLDefaultGridViewBlock.swift in Sources */,
-				B9BCE4DA249F90DE0046A045 /* AGLDatePickerTableCell.swift in Sources */,
-				B98D9B4F249FEA0800FFDE5E /* AgliullovObject.swift in Sources */,
+				B9BCE4DC249F91330046A045 /* AGLImageButtonTableViewCell.swift in Sources */,
+				B9BCE4D6249F8B150046A045 /* AGLDescriptionGridViewCell.swift in Sources */,
+				B9BCE4DA249F90DE0046A045 /* AGLDatePickerTableViewCell.swift in Sources */,
+				B947DBB324A52ABD00B40CF9 /* AGLPresentImageViewController.swift in Sources */,
 				B9E9A197249AAA8400B499B2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B947DBAA24A4DD9100B40CF9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B9E9A190249AAA8400B499B2 /* TestCalendarAgliullovApp */;
-			targetProxy = B947DBA924A4DD9100B40CF9 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B9E9A19A249AAA8400B499B2 /* Main.storyboard */ = {
@@ -402,46 +316,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		B947DBAB24A4DD9100B40CF9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U2N97D98Q8;
-				INFOPLIST_FILE = TestCalendarAgliullovAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = Rain.TestCalendarAgliullovAppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestCalendarAgliullovApp.app/TestCalendarAgliullovApp";
-			};
-			name = Debug;
-		};
-		B947DBAC24A4DD9100B40CF9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U2N97D98Q8;
-				INFOPLIST_FILE = TestCalendarAgliullovAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = Rain.TestCalendarAgliullovAppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestCalendarAgliullovApp.app/TestCalendarAgliullovApp";
-			};
-			name = Release;
-		};
 		B9E9A1A3249AAA8600B499B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -601,15 +475,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B947DBAD24A4DD9100B40CF9 /* Build configuration list for PBXNativeTarget "TestCalendarAgliullovAppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B947DBAB24A4DD9100B40CF9 /* Debug */,
-				B947DBAC24A4DD9100B40CF9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		B9E9A18C249AAA8400B499B2 /* Build configuration list for PBXProject "TestCalendarAgliullovApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

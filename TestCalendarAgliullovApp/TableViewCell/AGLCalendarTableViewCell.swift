@@ -15,8 +15,7 @@ class AGLCalendarTableViewCell: UITableViewCell {
         let calendar = FSCalendar()
         calendar.translatesAutoresizingMaskIntoConstraints = false
         calendar.locale = Locale(identifier: "RU")
-        //calendar.today = Date().startOfDay
-        //calendar.select(Date().startOfDay)
+        calendar.today = nil
         calendar.firstWeekday = 2
         return calendar
     }()
@@ -34,7 +33,6 @@ class AGLCalendarTableViewCell: UITableViewCell {
     fileprivate func setup() {
         self.contentView.backgroundColor = UIColor.groupTableViewBackground
         self.contentView.addSubview(self.calendar)
-//        self.backgroundColor = .clear
         
         let constraints: [NSLayoutConstraint] = [
             self.calendar.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 2),

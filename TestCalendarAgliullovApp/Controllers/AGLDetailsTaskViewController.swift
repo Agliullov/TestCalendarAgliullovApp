@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import QBImagePickerController
 
 enum PriorityState: String {
     case low
@@ -15,34 +16,23 @@ enum PriorityState: String {
     case high
 }
 
-struct SaveData {
-    let mainDescriptionString: String?
-    let detailsDescriptionString: String?
-    let priorityString: String?
-    let taskTime: Date?
-    
-    init(mainDescriptionString: String?, detailsDescriptionString: String?, priorityString: String?, taskTime: Date?) {
-        self.mainDescriptionString = mainDescriptionString
-        self.detailsDescriptionString = detailsDescriptionString
-        self.priorityString = priorityString
-        self.taskTime = taskTime
-    }
-}
-
 fileprivate enum TaskCellType: Int {
     case description
     case priority
     case dateTime
+    case action
     
     var cellClass: UITableViewCell.Type {
         let cellClass: UITableViewCell.Type
         switch self {
         case .description:
-            cellClass = AGLDefaultGridViewBlock.self
+            cellClass = AGLDescriptionGridViewCell.self
         case .priority:
             cellClass = AGLPriorityTableViewCell.self
         case .dateTime:
-            cellClass = AGLDatePickerTableCell.self
+            cellClass = AGLDatePickerTableViewCell.self
+        case .action:
+            cellClass = AGLImageButtonTableViewCell.self
         }
         return cellClass
     }
@@ -52,6 +42,7 @@ fileprivate enum TasksSectionType: Int {
     case description
     case priority
     case dateTime
+    case action
 }
 
 fileprivate struct TaskSection {
@@ -79,6 +70,8 @@ fileprivate struct TaskSection {
             cellTypes.append(.dateTime)
         case .priority:
             cellTypes.append(.priority)
+        case .action:
+            cellTypes.append(.action)
         }
         
         self._cellTypes = cellTypes
@@ -97,6 +90,7 @@ fileprivate struct TaskSection {
             header = HEADER_DETAILS_TASKS_VIEW_PRIORITY
         case .dateTime:
             header = HEADER_DETAILS_TASKS_VIEW_DATETIME
+        default: ()
         }
         return header
     }
@@ -108,6 +102,8 @@ class AGLDetailsTaskViewController: UIViewController {
     
     var calendarSelectedDate: Date = Date()
     
+    fileprivate var imagePath: String?
+    
     fileprivate lazy var realm: Realm? = {
         let realm = try? AGLRealmManager.shared.getDefaultRealm()
         return realm
@@ -117,6 +113,7 @@ class AGLDetailsTaskViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.allowsMultipleSelection = false
+        tableView.separatorStyle = .none
         if #available(iOS 13.0, *) {
             tableView.backgroundColor = UIColor.secondarySystemGroupedBackground
         } else {
@@ -134,9 +131,10 @@ class AGLDetailsTaskViewController: UIViewController {
         
         self.tableView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         self.tableView.frame = self.view.bounds
-        self.tableView.register(AGLDefaultGridViewBlock.self, forCellReuseIdentifier: String(describing: AGLDefaultGridViewBlock.self))
+        self.tableView.register(AGLDescriptionGridViewCell.self, forCellReuseIdentifier: String(describing: AGLDescriptionGridViewCell.self))
         self.tableView.register(AGLPriorityTableViewCell.self, forCellReuseIdentifier: String(describing: AGLPriorityTableViewCell.self))
-        self.tableView.register(AGLDatePickerTableCell.self, forCellReuseIdentifier: String(describing: AGLDatePickerTableCell.self))
+        self.tableView.register(AGLDatePickerTableViewCell.self, forCellReuseIdentifier: String(describing: AGLDatePickerTableViewCell.self))
+        self.tableView.register(AGLImageButtonTableViewCell.self, forCellReuseIdentifier: String(describing: AGLImageButtonTableViewCell.self))
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -144,7 +142,7 @@ class AGLDetailsTaskViewController: UIViewController {
         self.reloadData()
         
         let delete = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteTask))
-        let save = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTask))
+        let save = UIBarButtonItem(title: "Сохранить", style: .done, target: self, action: #selector(saveTask))
         
         self.navigationItem.setRightBarButtonItems([delete, save], animated: false)
     }
@@ -173,6 +171,10 @@ class AGLDetailsTaskViewController: UIViewController {
             section.append(datePickerSection)
         }
         
+        if let actionSection = TaskSection(type: .action) {
+            section.append(actionSection)
+        }
+        
         self.sections = section
     }
     
@@ -185,6 +187,17 @@ class AGLDetailsTaskViewController: UIViewController {
         }
     }
     
+    @objc fileprivate func openImageTask(image: UIImage?) {
+        
+        guard let imageTask = image else { return }
+        
+        let imageTaskVC = AGLPresentImageViewController()
+        let imageNavVC = UINavigationController(rootViewController: imageTaskVC)
+        
+        imageTaskVC.selectedImage = imageTask
+        self.present(imageNavVC, animated: true, completion: nil)
+    }
+    
     @objc fileprivate func saveTask() {
         
         //Название и описание
@@ -192,14 +205,13 @@ class AGLDetailsTaskViewController: UIViewController {
         var detailsDescriptionString: String = ""
         
         if let descriptionCellIndexPath = self.indexPaths(fotCellType: .description).first {
-            if let descriptionCell = self.tableView.cellForRow(at: descriptionCellIndexPath) as? AGLDefaultGridViewBlock {
+            if let descriptionCell = self.tableView.cellForRow(at: descriptionCellIndexPath) as? AGLDescriptionGridViewCell {
                 mainDescriptionString = descriptionCell.mainTextField.text ?? ""
                 detailsDescriptionString = descriptionCell.detailTextView.text ?? ""
             }
         }
         
         guard !mainDescriptionString.isEmpty, mainDescriptionString != "" else {
-            //let alertVC = UIAlertController(title: "Task title is empty", message: "To save the task you need to enter its title", preferredStyle: .alert)
             let alertController = UIAlertController(title: "Заголовок задачи пуст", message: "Чтобы сохранить задачу заполните поле 'Заголововок'", preferredStyle: .alert)
             
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -238,7 +250,7 @@ class AGLDetailsTaskViewController: UIViewController {
         var taskTime: Date = Date()
         
         if let dateTimeCellIndexPath = self.indexPaths(fotCellType: .dateTime).first {
-            if let dateTimeCell = self.tableView.cellForRow(at: dateTimeCellIndexPath) as? AGLDatePickerTableCell {
+            if let dateTimeCell = self.tableView.cellForRow(at: dateTimeCellIndexPath) as? AGLDatePickerTableViewCell {
                 taskTime = dateTimeCell.timeIntervalPicker.date
             }
         }
@@ -252,7 +264,7 @@ class AGLDetailsTaskViewController: UIViewController {
             dateCreated = self.calendarSelectedDate
         }
         
-        let json: [String: Any] = [
+        var json: [String: Any] = [
             "id" : id,
             "mainDescription" : mainDescriptionString,
             "detailsDescription" : detailsDescriptionString,
@@ -260,6 +272,15 @@ class AGLDetailsTaskViewController: UIViewController {
             "date" : taskTime,
             "dateCreated" : dateCreated
         ]
+        
+        
+        if let imagePath = self.imagePath {
+            json["imagePath"] = imagePath
+        } else {
+            if let taskImagePath = self.task?.imagePath {
+                json["imagePath"] = taskImagePath
+            }
+        }
         
         let _ = try? AGLTask.saveItem(json)
         self.presentActivityViewController()
@@ -297,6 +318,17 @@ class AGLDetailsTaskViewController: UIViewController {
         }
         return indexPaths
     }
+    
+    fileprivate func openImagePicker() {
+        let pickerVC = QBImagePickerController()
+        pickerVC.delegate = self
+        pickerVC.mediaType = .image
+        pickerVC.allowsMultipleSelection = false
+        pickerVC.showsNumberOfSelectedAssets = false
+        pickerVC.modalPresentationStyle = .pageSheet
+        
+        self.present(pickerVC, animated: true, completion: nil)
+    }
 }
 
 extension AGLDetailsTaskViewController: UITableViewDataSource, UITableViewDelegate {
@@ -314,10 +346,10 @@ extension AGLDetailsTaskViewController: UITableViewDataSource, UITableViewDelega
         let cellType = section.cellTypes[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: cellType.cellClass), for: indexPath)
-        
+        cell.selectionStyle = .none
         switch cellType {
         case .description:
-            let descriptionCell = cell as! AGLDefaultGridViewBlock
+            let descriptionCell = cell as! AGLDescriptionGridViewCell
             
             let mainTitle: String? = (self.task != nil) ? self.task?.mainDescriptionString : ""
             let detailsText: String? = (self.task != nil) ? self.task?.detailsDescriptionString : ""
@@ -326,18 +358,34 @@ extension AGLDetailsTaskViewController: UITableViewDataSource, UITableViewDelega
         case .priority:
             let priorityCell = cell as! AGLPriorityTableViewCell
             
-            if task?.priorityStateString == PriorityState.low.rawValue {
+            if task?.priorityStateString.lowercased() == PriorityState.low.rawValue.lowercased() {
                 priorityCell.prioritySegmentedControl.selectedSegmentIndex = 0
-            } else if task?.priorityStateString == PriorityState.medium.rawValue {
+            } else if task?.priorityStateString.lowercased() == PriorityState.medium.rawValue.lowercased() {
                 priorityCell.prioritySegmentedControl.selectedSegmentIndex = 1
-            } else if task?.priorityStateString == PriorityState.high.rawValue {
+            } else if task?.priorityStateString.lowercased() == PriorityState.high.rawValue.lowercased() {
                 priorityCell.prioritySegmentedControl.selectedSegmentIndex = 2
             }
         case .dateTime:
-            let dateTimeCell = cell as! AGLDatePickerTableCell
+            let dateTimeCell = cell as! AGLDatePickerTableViewCell
             
             if let date = task?.taskTime {
                 dateTimeCell.timeIntervalPicker.date = date
+            }
+        case .action:
+            let actionCell = cell as! AGLImageButtonTableViewCell
+            
+            if let task = task, let imagePath = task.imagePath, !imagePath.isEmpty, let image = UIImage(contentsOfFile: imagePath) {
+                actionCell.taskImageView.image = image
+            } else {
+                actionCell.taskImageView.image = UIImage(named: "photoPlaceholder")
+            }
+            
+            actionCell.buttonActionContainer = { [weak self] in
+                self?.openImageTask(image: actionCell.taskImageView.image!)
+            }
+            
+            actionCell.buttonActionBlock = { [weak self] in
+                self?.openImagePicker()
             }
         }
         return cell
@@ -366,21 +414,53 @@ extension AGLDetailsTaskViewController: UITableViewDataSource, UITableViewDelega
         return headerView
     }
     
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        if let descriptionCellIndexPath = self.indexPaths(fotCellType: .description).first {
-            if let descriptionCell = self.tableView.cellForRow(at: descriptionCellIndexPath) as? AGLDefaultGridViewBlock {
-                descriptionCell.mainTextField.resignFirstResponder()
-                descriptionCell.detailTextView.resignFirstResponder()
-            }
-        }
-    }
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let descriptionCellIndexPath = self.indexPaths(fotCellType: .description).first {
-            if let descriptionCell = self.tableView.cellForRow(at: descriptionCellIndexPath) as? AGLDefaultGridViewBlock {
-                descriptionCell.mainTextField.resignFirstResponder()
-                descriptionCell.detailTextView.resignFirstResponder()
+        let section = self.sections[indexPath.section]
+        let cellType = section.cellTypes[indexPath.row]
+        switch cellType {
+        default:
+            if let descriptionCellIndexPath = self.indexPaths(fotCellType: .description).first {
+                if let descriptionCell = self.tableView.cellForRow(at: descriptionCellIndexPath) as? AGLDescriptionGridViewCell {
+                    descriptionCell.mainTextField.resignFirstResponder()
+                    descriptionCell.detailTextView.resignFirstResponder()
+                }
             }
         }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension AGLDetailsTaskViewController: QBImagePickerControllerDelegate {
+    func qb_imagePickerController(_ imagePickerController: QBImagePickerController!, didFinishPickingAssets assets: [Any]!) {
+        
+        for case let asset as PHAsset in assets {
+            if asset.mediaType == .image {
+                PHImageManager.default().requestImageData(for: asset, options: nil) { (data, name, orientation, info) in
+                    if let data = data {
+                        let fileName = (info?["PHImageFileURLKey"] as? URL)?.lastPathComponent ?? "file.jpeg"
+                        let cachedUrlPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/\(NSUUID().uuidString)"
+                        try? FileManager.default.createDirectory(atPath: cachedUrlPath, withIntermediateDirectories: true, attributes: nil)
+                        let fullPath = cachedUrlPath + "\(fileName)"
+                        FileManager.default.createFile(atPath: fullPath, contents: data, attributes: nil)
+                        
+                        if let image = UIImage(data: data) {
+                            if let defaultButtonTableCellIndexPath = self.indexPaths(fotCellType: .action).first {
+                                if let defaultButtonTableCell = self.tableView.cellForRow(at: defaultButtonTableCellIndexPath) as? AGLImageButtonTableViewCell {
+                                    DispatchQueue.main.async {
+                                        defaultButtonTableCell.taskImageView.image = image
+                                    }
+                                }
+                            }
+                        }
+                        self.imagePath = fullPath
+                    }
+                }
+            }
+        }
+        imagePickerController.dismiss(animated: true, completion: nil)
+    }
+    
+    func qb_imagePickerControllerDidCancel(_ imagePickerController: QBImagePickerController!) {
+        imagePickerController.dismiss(animated: true, completion: nil)
     }
 }

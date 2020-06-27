@@ -8,5 +8,6 @@ target 'TestCalendarAgliullovApp' do
   # Pods for TestCalendarAgliullovApp
  	pod 'FSCalendar'
 	pod 'RealmSwift'
+	pod 'QBImagePickerController'
 
 end
